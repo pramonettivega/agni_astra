@@ -59,9 +59,9 @@ Open the relevant notebook under the `notebooks/` directory.
 - Merge field data for ground-truth labels.
 
 ### **Step 2: Classification Models**
-- **PFT Classification** → Random Forest / SVM
-- **Genus Classification** → Gradient Boosting / CNN
-- **Species Classification** → Deep Learning (ResNet / Transformers)
+- **PFT Classification** → 
+- **Genus Classification** → 
+- **Species Classification** → 
 
 ### **Step 3: Model Evaluation**
 - Compute accuracy, precision, recall, and F1-score.
