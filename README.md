@@ -50,6 +50,9 @@ cd <repo-name>
 
 pip install -r requirements.txt
 ```
+
+then proceed on running `final_NB.ipynb` file.
+
 If you don't set up Git LFS, large files like `data/CA_TREE.csv` will not download correctly.
 
 ---
