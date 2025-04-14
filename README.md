@@ -98,7 +98,7 @@ All plots are included in `Images/` and `plots.ipynb`. Highlights:
 ## 📄 Project Report
 Read our full methodology, evaluation strategy, modeling diagrams, and discussion in the official PDF report:
 
-📘 `SDSC_Report.pdf`
+📘 [`SDSC_Report.pdf`](./SDSC_Report.pdf)
 
 ---
 
