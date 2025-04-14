@@ -1,85 +1,132 @@
-# **Forest Structure Classification for Wildfire Modeling**
+# 🌲 Fire-Ready Forests Data Challenge – Team Agni Astra
 
-## **Project Overview**
-This project focuses on classifying trees using **Terrestrial Laser Scanning (TLS) data** to predict:
+Welcome to the repository for **Team Agni Astra**'s submission to the **Fire-Ready Forests Data Challenge** hosted by the **National Data Platform**. Our aim was to build a robust and interpretable machine learning pipeline for classifying forest trees in California across three biological levels:
+
 1. **Plant Functional Type (PFT)**
-2. **Tree Genus**
-3. **Tree Species**
+2. **Genus**
+3. **Species**
 
-The goal is to **improve wildfire modeling** by leveraging sensed data to supplement traditional field-collected data.
+We used ecological, morphological, and spatial features to train a hierarchical ensemble of classifiers that achieved strong predictive performance across all levels.
 
-## **Project Structure**
+---
+
+## 📁 Repository Structure
 ```
-📂 forest-structure-classification
-├── 📜 README.md                 # Project documentation
-├── 📜 requirements.txt          # Dependencies
-├── 📜 report.pdf                # Detailed project report
-├── 📂 data/                      # Dataset directory (not included in repo)
-├── 📂 notebooks/                 # Jupyter notebooks for data exploration and modeling
-│   ├── pft_classification.ipynb  # Model for Plant Functional Type
-│   ├── genus_classification.ipynb # Model for Genus Classification
-│   ├── species_classification.ipynb # Model for Species Classification
-│   ├── evaluation.ipynb         # Model evaluation & comparison
-├── 📂 models/                    # Saved trained models
-└── 📂 src/                        # Scripts for data processing & model training
+├── data/               # Processed and merged datasets (FIA + REF_SPECIES)
+├── Images/             # All project-related figures and visualizations
+├── NB.ipynb            # Final pipeline notebook (run this)
+├── plots.ipynb         # Exploratory plots and feature analyses
+├── requirements.txt    # Required Python packages
+├── .gitattributes      # Git LFS tracking config
+├── README.md           # This file
 ```
 
-## **Setup Instructions**
-### **1. Clone the Repository**
+---
+
+## ⚠️ Git LFS Required
+This repository uses **[Git Large File Storage (LFS)](https://git-lfs.github.com/)** to handle large files like `CA_TREE.csv`.
+
+**Before cloning**, ensure LFS is installed and initialized:
+
 ```bash
-git clone https://github.com/yourusername/forest-structure-classification.git
-cd forest-structure-classification
+# One-time setup (if you haven't already)
+git lfs install
+
+# Clone the repo
+git clone <repo-url>
+cd <repo-name>
 ```
+If you don't set up Git LFS, large files like `data/CA_TREE.csv` will not download correctly.
 
-### **2. Install Dependencies**
-Create a virtual environment (optional but recommended):
-```bash
-python -m venv env
-source env/bin/activate  # On Windows, use `env\Scripts\activate`
-```
-Install required packages:
-```bash
-pip install -r requirements.txt
-```
+---
 
-### **3. Download Data**
-Place the required TLS and reference field data in the `data/` directory. Ensure the dataset structure matches the expectations outlined in the report.
+## 🚀 Pipeline Overview
+We implemented a hierarchical stacking ensemble pipeline to classify:
 
-### **4. Run Jupyter Notebooks**
-Launch Jupyter Notebook to explore and execute models:
-```bash
-jupyter notebook
-```
-Open the relevant notebook under the `notebooks/` directory.
+- 🌿 **PFTs** using tree structure, location, and ecological data
+- 🌲 **Genus** using all of the above + predicted PFT
+- 🌳 **Species** using all of the above + predicted Genus
 
-## **Modeling Approach**
-### **Step 1: Data Preprocessing**
-- Clean and preprocess TLS data.
-- Extract relevant tree features.
-- Merge field data for ground-truth labels.
+---
 
-### **Step 2: Classification Models**
-- **PFT Classification** → 
-- **Genus Classification** → 
-- **Species Classification** → 
+## 🔧 Preprocessing Steps
+- Merged FIA and REF_SPECIES datasets
+- Dropped highly correlated features (e.g., BasalA)
+- Filtered by ecological zones (`ECOSUBCD`)
+- One-hot encoded categorical variables
+- Handled missing values
+- Converted units (e.g., inches to cm)
+- Stratified train-test split and standardized numeric columns
 
-### **Step 3: Model Evaluation**
-- Compute accuracy, precision, recall, and F1-score.
-- Compare predicted distributions to actual field data.
+---
 
-## **Results and Findings**
-- **How well did the model perform?** (Accuracy & distribution comparison)
-- **Challenges and limitations**
-- **Potential improvements**
+## 🧠 Modeling Strategy
+- **Base Models**: Random Forest, Extra Trees, Decision Tree, Bagging
+- **Meta-Learner**: Tuned XGBoost classifier
 
-## **Next Steps**
-- Enhance feature engineering (e.g., spectral data, additional attributes).
-- Experiment with ensemble methods.
-- Explore transfer learning for species classification.
+**Features**:
+- Numerical: `DIA` (diameter), `HT` (height), `LAT`, `LON`
+- One-hot encoded: Ecological Zones
 
-## **Authors**
-- [Your Name](https://github.com/yourusername) - UCSD CSE
+**Target Variables**: PFT → Genus → Species (hierarchical)
 
-## **License**
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+---
 
+## 📊 Performance Summary
+| Task    | Accuracy | Weighted F1-Score |
+|---------|----------|-------------------|
+| **PFT**     | 89.7%    | 0.89              |
+| **Genus**   | 83.3%    | 0.83              |
+| **Species** | 96.9%    | 0.97              |
+
+The models showed high consistency, especially for dominant classes (e.g., Evergreen conifer, Pinus). Site-level evaluations were conducted for PFTs.
+
+---
+
+## 📈 Key Visuals & Insights
+All plots are included in `Images/` and `plots.ipynb`. Highlights:
+
+- KDE maps of tree density
+- Distribution plots of diameter, height, and basal area
+- Correlation heatmaps
+- Feature importance charts
+- Scatter and box plots for structural analysis
+- Pipeline architecture visualizations
+
+---
+
+## 📄 Project Report
+Read our full methodology, evaluation strategy, modeling diagrams, and discussion in the official PDF report:
+
+📘 `SDSC_Report.pdf`
+
+---
+
+## ✨ Acknowledgments
+This project was developed for the Fire-Ready Forests Challenge hosted by the National Data Platform and San Diego Supercomputer Center (SDSC).
+
+Special thanks to **Pedro** and **Leticia** for their prompt and helpful responses throughout the challenge. Your support made a huge difference in helping our team resolve doubts and stay on track!
+
+---
+
+## 👥 Team Agni Astra
+- **Guruprasad Parasnis**
+- **Abhay Lal**
+- **Yash Vishe**
+
+---
+
+## 📌 Future Work
+To improve rare-class detection and generalizability, we plan to explore:
+
+- 📉 Class-aware losses (e.g., focal loss)
+- 🚐 Integration of multispectral/remote sensing & soil data
+- 🌍 Spatial cross-validation techniques
+- 🔀 Continual learning for incremental field data updates
+
+---
+
+## 💬 Contact
+For questions, suggestions, or collaborations, feel free to open an issue or reach out via email.
+
+---
