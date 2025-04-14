@@ -31,6 +31,18 @@ This repository uses **[Git Large File Storage (LFS)](https://git-lfs.github.com
 ```bash
 # One-time setup (if you haven't already)
 git lfs install
+```
+
+if you are running on a conda environment, initialize new environment with the following code:
+
+```bash
+conda create -n "env-name" python=3.11
+
+conda activate env-name
+```
+If not on conda, then you can directly skip to the below steps
+
+```bash
 
 # Clone the repo
 git clone <repo-url>
@@ -77,7 +89,7 @@ We implemented a hierarchical stacking ensemble pipeline to classify:
 ## 📊 Performance Summary
 | Task    | Accuracy | Weighted F1-Score |
 |---------|----------|-------------------|
-| **PFT**     | 89.7%    | 0.89              |
+| **PFT**     | 90.0%    | 0.89              |
 | **Genus**   | 83.3%    | 0.83              |
 | **Species** | 96.9%    | 0.97              |
 
