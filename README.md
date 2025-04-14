@@ -14,7 +14,7 @@ We used ecological, morphological, and spatial features to train a hierarchical 
 ```
 ├── data/               # Processed and merged datasets (FIA + REF_SPECIES)
 ├── Images/             # All project-related figures and visualizations
-├── NB.ipynb            # Final pipeline notebook (run this)
+├── final_NB.ipynb            # Final pipeline notebook (run this)
 ├── plots.ipynb         # Exploratory plots and feature analyses
 ├── requirements.txt    # Required Python packages
 ├── .gitattributes      # Git LFS tracking config
