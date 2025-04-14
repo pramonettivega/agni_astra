@@ -35,6 +35,8 @@ git lfs install
 # Clone the repo
 git clone <repo-url>
 cd <repo-name>
+
+pip install -r requirements.txt
 ```
 If you don't set up Git LFS, large files like `data/CA_TREE.csv` will not download correctly.
 
