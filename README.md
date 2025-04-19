@@ -1,4 +1,4 @@
-# 🌲 Fire-Ready Forests Data Challenge – Team Agni Astra
+# 🌲 Fire-Ready Forests Data Challenge (Winner) ->Team Agni Astra
 
 Welcome to the repository for **Team Agni Astra**'s submission to the **Fire-Ready Forests Data Challenge** hosted by the **National Data Platform**. Our aim was to build a robust and interpretable machine learning pipeline for classifying forest trees in California across three biological levels:
 
